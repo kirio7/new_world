@@ -1,0 +1,129 @@
+{% block body %}
+
+<link rel="stylesheet" href="{{ asset('css/LegalPage.css') }}">
+
+<section class="top-page">
+    {% include 'bottom_header_regulation/header_page.html.twig' %}
+
+    <div class="container">
+        <h1 class="big-title">Politique des cookies – NewWorld</h1>
+        <p><strong>Dernière mise à jour :</strong> 09/11/2025</p>
+    </div>
+</section>
+
+<section class="legal-page">
+    <div class="container">
+
+        <h2>1. Qu’est-ce qu’un cookie ?</h2>
+        <p>
+            Un cookie est un petit fichier texte enregistré sur votre appareil
+            (ordinateur, smartphone, tablette, etc.) par le navigateur lors de la visite d’un site web.
+        </p>
+
+        <p>
+            Il permet au site consulté de stocker certaines informations relatives à votre navigation,
+            telles que vos préférences de langue, le contenu de votre panier ou encore des données
+            de mesure d’audience.
+        </p>
+
+        <p>Les cookies ont plusieurs finalités :</p>
+        <ul>
+            <li>Assurer le bon fonctionnement du site</li>
+            <li>Faciliter votre navigation</li>
+            <li>Mesurer la fréquentation du site et améliorer son contenu</li>
+            <li>Personnaliser l’affichage selon vos préférences</li>
+        </ul>
+
+        <p>
+            Certains cookies sont strictement nécessaires au fonctionnement du site et sont donc exemptés de consentement.
+            D’autres, à des fins statistiques ou de personnalisation, nécessitent votre accord préalable.
+        </p>
+
+        <p>On distingue deux types de cookies :</p>
+        <ul>
+            <li><strong>Cookies internes (first-party)</strong> : déposés par le site newworld.fr</li>
+            <li><strong>Cookies tiers (third-party)</strong> : déposés par des services externes intégrés au site</li>
+        </ul>
+
+        <h2>2. Quels sont les cookies utilisés ?</h2>
+
+        <h3>Cookies nécessaires</h3>
+        <p>
+            Ces cookies permettent au site de fonctionner correctement (navigation, panier, session utilisateur,
+            préférences de langue, sécurité des formulaires). Ils ne nécessitent pas de consentement.
+        </p>
+
+        <h3>Cookies de mesure d’audience</h3>
+        <p>
+            Ils permettent de mesurer la fréquentation et l’utilisation du site afin d’en améliorer
+            les performances. Les données collectées sont anonymes.
+        </p>
+
+        <h3>Cookies de personnalisation</h3>
+        <p>
+            Ils permettent d’adapter le contenu et les recommandations selon vos préférences.
+        </p>
+
+        <h3>Cookies de sécurité</h3>
+        <p>
+            Le site peut utiliser une solution de protection telle que reCAPTCHA ou Datadome
+            afin de distinguer les utilisateurs humains des programmes automatisés.
+            Ces solutions peuvent déposer des cookies techniques et transmettre certaines
+            informations (adresse IP, comportement de navigation) aux services concernés.
+        </p>
+
+        <h2>3. Combien de temps sont conservés les cookies ?</h2>
+        <ul>
+            <li>Cookies soumis à consentement : 6 mois maximum</li>
+            <li>Cookies nécessaires : 13 mois maximum</li>
+        </ul>
+
+        <p>
+            À l’expiration de ces délais, les cookies sont automatiquement supprimés.
+        </p>
+
+        <h2>4. Comment paramétrer les cookies ?</h2>
+
+        <p>Vous pouvez gérer vos préférences :</p>
+        <ul>
+            <li>Via le bandeau de consentement affiché lors de votre première visite</li>
+            <li>Via le bouton « Gérer mes préférences » en bas du site</li>
+            <li>Via les paramètres de votre navigateur</li>
+        </ul>
+
+        <p>Configuration selon votre navigateur :</p>
+        <ul>
+            <li>Google Chrome</li>
+            <li>Mozilla Firefox</li>
+            <li>Safari</li>
+            <li>Microsoft Edge</li>
+            <li>Opera</li>
+        </ul>
+
+        <h2>5. Mise à jour de la politique</h2>
+        <p>
+            Cette politique peut être modifiée à tout moment afin de refléter
+            les évolutions légales ou techniques. La date de mise à jour figure en haut de cette page.
+        </p>
+
+        <h2>Droit de suppression du compte</h2>
+        <p>
+            Conformément au RGPD, chaque Utilisateur peut demander la suppression
+            de son compte et de ses données personnelles.
+        </p>
+
+        <ul>
+            <li>Depuis la section « Mon Compte » → « Supprimer mon compte »</li>
+            <li>Ou par email : rgpd-contact@newworld.fr (objet : Demande de suppression de compte)</li>
+        </ul>
+
+        <p>
+            La suppression sera effectuée dans un délai raisonnable.
+            Certaines données peuvent être conservées temporairement si une obligation légale l’exige.
+        </p>
+
+    </div>
+</section>
+
+{% include 'bottom_header_regulation/bottom_page.html.twig' %}
+{% endblock %}

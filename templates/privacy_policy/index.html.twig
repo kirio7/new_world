@@ -1,0 +1,143 @@
+{% block body %}
+
+<link rel="stylesheet" href="{{ asset('css/TopBottomPage.css') }}">
+<link rel="stylesheet" href="{{ asset('css/LegalPage.css') }}">
+
+<section class="top-page">
+    {% include 'bottom_header_regulation/header_page.html.twig' %}
+
+    <div class="container">
+        <h1 class="big-title">Politique de confidentialité – NewWorld</h1>
+        <p><strong>Dernière mise à jour :</strong> 09/11/2025</p>
+    </div>
+</section>
+
+<section class="legal-page">
+    <div class="container">
+
+        <h2>SOMMAIRE</h2>
+        <ol>
+            <li>Objet</li>
+            <li>Responsable du traitement</li>
+            <li>Données collectées</li>
+            <li>Finalités du traitement</li>
+            <li>Bases légales du traitement</li>
+            <li>Partage des données</li>
+            <li>Conservation des données</li>
+            <li>Droits de l’Utilisateur</li>
+            <li>Cookies et technologies similaires</li>
+            <li>Sécurité</li>
+            <li>Modifications</li>
+        </ol>
+
+        <h2>1. Objet</h2>
+        <p>
+            La présente Politique de confidentialité décrit comment NewWorld
+            collecte, utilise, stocke et protège les données personnelles
+            des utilisateurs lors de l’utilisation du site www.newworld.fr
+            et de ses éventuelles applications associées (les « Supports Digitaux »).
+        </p>
+        <p>
+            L’Utilisateur est invité à lire attentivement cette Politique
+            avant toute utilisation des Supports Digitaux.
+        </p>
+
+        <h2>2. Responsable du traitement</h2>
+        <p>
+            <strong>NewWorld</strong><br>
+            12, rue des Producteurs<br>
+            69000 Lyon, France<br>
+            Email : contact@newworld.fr
+        </p>
+
+        <h2>3. Données collectées</h2>
+
+        <h3>3.1 Données fournies par l’Utilisateur</h3>
+        <ul>
+            <li>Nom, prénom, date de naissance</li>
+            <li>Adresse e-mail, numéro de téléphone</li>
+            <li>Adresse postale et informations de facturation/livraison</li>
+            <li>Identifiants de connexion (login et mot de passe)</li>
+            <li>Préférences et abonnements (newsletter, alertes)</li>
+        </ul>
+
+        <h3>3.2 Données collectées automatiquement</h3>
+        <ul>
+            <li>Adresse IP, type de navigateur, système d’exploitation</li>
+            <li>Pages visitées et durée de navigation</li>
+            <li>Données issues des cookies et technologies similaires</li>
+        </ul>
+
+        <h2>4. Finalités du traitement</h2>
+        <ul>
+            <li>Gestion du compte client</li>
+            <li>Traitement des commandes et livraisons</li>
+            <li>Envoi de communications (avec consentement)</li>
+            <li>Amélioration du site et de l’expérience utilisateur</li>
+            <li>Sécurité et prévention des fraudes</li>
+        </ul>
+
+        <h2>5. Bases légales du traitement</h2>
+        <ul>
+            <li>Exécution d’un contrat (commandes, création de compte)</li>
+            <li>Consentement de l’Utilisateur</li>
+            <li>Respect d’une obligation légale</li>
+            <li>Intérêt légitime (sécurité, amélioration des services)</li>
+        </ul>
+
+        <h2>6. Partage des données</h2>
+        <p>Les données peuvent être partagées avec :</p>
+        <ul>
+            <li>Des prestataires techniques ou logistiques</li>
+            <li>Des partenaires nécessaires au fonctionnement du service</li>
+            <li>Les autorités légales si requis</li>
+        </ul>
+        <p>NewWorld ne vend pas les données personnelles.</p>
+
+        <h2>7. Conservation des données</h2>
+        <ul>
+            <li>Durée limitée au temps nécessaire à la finalité</li>
+            <li>Maximum 3 ans d’inactivité pour les comptes clients</li>
+        </ul>
+
+        <h2>8. Droits de l’Utilisateur</h2>
+        <p>Conformément au RGPD, l’Utilisateur dispose des droits suivants :</p>
+        <ul>
+            <li>Droit d’accès, de rectification et de suppression</li>
+            <li>Droit de limitation ou d’opposition</li>
+            <li>Droit à la portabilité des données</li>
+            <li>Droit de retirer son consentement</li>
+            <li>Droit d’introduire une réclamation auprès de la CNIL</li>
+        </ul>
+        <p>
+            Pour exercer ces droits : contact@newworld.fr
+        </p>
+
+        <h2>9. Cookies et technologies similaires</h2>
+        <p>Les cookies sont utilisés pour :</p>
+        <ul>
+            <li>Assurer le bon fonctionnement du site</li>
+            <li>Analyser l’utilisation et améliorer l’expérience</li>
+            <li>Proposer des contenus personnalisés</li>
+        </ul>
+        <p>
+            L’Utilisateur peut gérer ou refuser les cookies via son navigateur.
+        </p>
+
+        <h2>10. Sécurité</h2>
+        <p>
+            NewWorld met en œuvre les mesures techniques et organisationnelles
+            nécessaires pour protéger les données personnelles.
+        </p>
+
+        <h2>11. Modifications</h2>
+        <p>
+            Cette Politique peut être mise à jour à tout moment.
+            La version en ligne constitue la version officielle.
+        </p>
+
+    </div>
+</section>
+
+{% include 'bottom_header_regulation/bottom_page.html.twig' %}
+{% endblock %}

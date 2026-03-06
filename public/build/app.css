@@ -1,0 +1,16 @@
+/*!**************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[1].use[1]!./assets/styles/app.css ***!
+  \**************************************************************************************************************/
+  body {
+    font-family: 'Lato', sans-serif;
+    background-color: #c8a96e;
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27400%27 height=%27400%27%3E%3Cfilter id=%27n%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%270.75%27 numOctaves=%274%27 stitchTiles=%27stitch%27/%3E%3CfeColorMatrix type=%27saturate%27 values=%270%27/%3E%3C/filter%3E%3Crect width=%27400%27 height=%27400%27 filter=%27url%28%23n%29%27 opacity=%270.4%27/%3E%3C/svg%3E"),
+      repeating-linear-gradient(102deg, rgba(180,130,60,0.07) 0px, transparent 2px, transparent 28px),
+      linear-gradient(160deg, #d4b07a 0%, #b8904a 40%, #c9a060 70%, #d6b87a 100%);
+    min-height: 100vh;
+    padding: 3rem 1rem;
+    position: relative;
+  }
+
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYXBwLmNzcyIsIm1hcHBpbmdzIjoiOzs7RUFBRTtJQUNFLCtCQUErQjtJQUMvQix5QkFBeUI7SUFDekI7OztpRkFHNkU7SUFDN0UsaUJBQWlCO0lBQ2pCLGtCQUFrQjtJQUNsQixrQkFBa0I7RUFDcEIsQyIsInNvdXJjZXMiOlsid2VicGFjazovLy8uL2Fzc2V0cy9zdHlsZXMvYXBwLmNzcyJdLCJzb3VyY2VzQ29udGVudCI6WyIgIGJvZHkge1xuICAgIGZvbnQtZmFtaWx5OiAnTGF0bycsIHNhbnMtc2VyaWY7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogI2M4YTk2ZTtcbiAgICBiYWNrZ3JvdW5kLWltYWdlOlxuICAgICAgdXJsKFwiZGF0YTppbWFnZS9zdmcreG1sLCUzQ3N2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc0MDAnIGhlaWdodD0nNDAwJyUzRSUzQ2ZpbHRlciBpZD0nbiclM0UlM0NmZVR1cmJ1bGVuY2UgdHlwZT0nZnJhY3RhbE5vaXNlJyBiYXNlRnJlcXVlbmN5PScwLjc1JyBudW1PY3RhdmVzPSc0JyBzdGl0Y2hUaWxlcz0nc3RpdGNoJy8lM0UlM0NmZUNvbG9yTWF0cml4IHR5cGU9J3NhdHVyYXRlJyB2YWx1ZXM9JzAnLyUzRSUzQy9maWx0ZXIlM0UlM0NyZWN0IHdpZHRoPSc0MDAnIGhlaWdodD0nNDAwJyBmaWx0ZXI9J3VybCglMjNuKScgb3BhY2l0eT0nMC40Jy8lM0UlM0Mvc3ZnJTNFXCIpLFxuICAgICAgcmVwZWF0aW5nLWxpbmVhci1ncmFkaWVudCgxMDJkZWcsIHJnYmEoMTgwLDEzMCw2MCwwLjA3KSAwcHgsIHRyYW5zcGFyZW50IDJweCwgdHJhbnNwYXJlbnQgMjhweCksXG4gICAgICBsaW5lYXItZ3JhZGllbnQoMTYwZGVnLCAjZDRiMDdhIDAlLCAjYjg5MDRhIDQwJSwgI2M5YTA2MCA3MCUsICNkNmI4N2EgMTAwJSk7XG4gICAgbWluLWhlaWdodDogMTAwdmg7XG4gICAgcGFkZGluZzogM3JlbSAxcmVtO1xuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgfSJdLCJuYW1lcyI6W10sInNvdXJjZVJvb3QiOiIifQ==*/

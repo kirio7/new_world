@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Produits — NewWorld</title>
+    <link rel="stylesheet" href="{{ asset('css/ProductPage.css') }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Cinzel:wght@400;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- ===== HEADER (placeholder) ===== -->
+<section class="top-page">
+    {% include 'bottom_header_regulation/header_page.html.twig' %}
+</section>
+
+<!-- ===== MIDDLE PAGE ===== -->
+<section class="middle-page">
+  <div class="product-page">
+
+    <!-- ==================== FILTRES ==================== -->
+    <aside class="filters">
+
+      <h2 class="filters-title">Filtres</h2>
+
+      <details class="filter-dropdown" open>
+        <summary><span>% Promo</span></summary>
+        <div class="dropdown-content">
+          <label><input type="checkbox"> -10%</label>
+          <label><input type="checkbox"> -20%</label>
+          <label><input type="checkbox"> -50%</label>
+        </div>
+      </details>
+
+      <details class="filter-dropdown">
+        <summary><span>Catégorie</span></summary>
+        <div class="dropdown-content">
+          <label><input type="checkbox"> Fruits</label>
+          <label><input type="checkbox"> Légumes</label>
+          <label><input type="checkbox"> Viandes</label>
+        </div>
+      </details>
+
+      <details class="filter-dropdown">
+        <summary><span>Marque</span></summary>
+        <div class="dropdown-content">
+          <label><input type="checkbox"> Carrefour</label>
+          <label><input type="checkbox"> Leclerc</label>
+          <label><input type="checkbox"> Bio Village</label>
+        </div>
+      </details>
+
+      <details class="filter-dropdown">
+        <summary><span>Allergènes</span></summary>
+        <div class="dropdown-content">
+          <label><input type="checkbox"> Sans gluten</label>
+          <label><input type="checkbox"> Sans lactose</label>
+          <label><input type="checkbox"> Sans arachide</label>
+        </div>
+      </details>
+
+      <details class="filter-dropdown">
+        <summary><span>Favoris</span></summary>
+        <div class="dropdown-content">
+          <label><input type="checkbox"> Produits suivis</label>
+        </div>
+      </details>
+
+    </aside>
+
+    <!-- ==================== PRODUITS ==================== -->
+    <main class="products-zone">
+
+      <div class="products-topbar">
+        <div>
+          <h2>Nos produits</h2>
+          <span class="count">9 articles</span>
+        </div>
+        <select class="sort-select">
+          <option>Trier par : Pertinence</option>
+          <option>Prix croissant</option>
+          <option>Prix décroissant</option>
+          <option>Nouveautés</option>
+        </select>
+      </div>
+
+      <div class="cards-grid">
+
+        <!-- Card 1 — avec badge promo -->
+        <div class="card">
+          <span class="card-badge">-20%</span>
+          <button class="fav-btn" title="Ajouter aux favoris">♡</button>
+          <div class="image_container">
+            <svg class="img-placeholder" viewBox="0 0 24 24" fill="none" stroke="#6b3a05" stroke-width="1.5"><path d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5M9.75 3.75h4.5M12 3v.75"/></svg>
+          </div>
+          <div class="card-body">
+            <span class="card-brand">Bio Village</span>
+            <div class="card-title">Panier de légumes frais</div>
+            <div class="card-size">1 kg — Origine locale</div>
+            <div class="card-action">
+              <span class="card-price">4,99 €</span>
+              <button class="cart-button">
+                <svg class="cart-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><path d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" stroke-linejoin="round" stroke-linecap="round"/></svg>
+                Ajouter
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card">
+          <button class="fav-btn" title="Ajouter aux favoris">♡</button>
+          <div class="image_container">
+            <svg class="img-placeholder" viewBox="0 0 24 24" fill="none" stroke="#6b3a05" stroke-width="1.5"><path d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5M9.75 3.75h4.5M12 3v.75"/></svg>
+          </div>
+          <div class="card-body">
+            <span class="card-brand">Carrefour</span>
+            <div class="card-title">Pommes Golden</div>
+            <div class="card-size">500 g — France</div>
+            <div class="card-action">
+              <span class="card-price">2,49 €</span>
+              <button class="cart-button">
+                <svg class="cart-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><path d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" stroke-linejoin="round" stroke-linecap="round"/></svg>
+                Ajouter
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card">
+          <button class="fav-btn" title="Ajouter aux favoris">♡</button>
+          <div class="image_container">
+            <svg class="img-placeholder" viewBox="0 0 24 24" fill="none" stroke="#6b3a05" stroke-width="1.5"><path d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5M9.75 3.75h4.5M12 3v.75"/></svg>
+          </div>
+          <div class="card-body">
+            <span class="card-brand">Carrefour</span>
+            <div class="card-title">Pommes Golden</div>
+            <div class="card-size">500 g — France</div>
+            <div class="card-action">
+              <span class="card-price">2,49 €</span>
+              <button class="cart-button">
+                <svg class="cart-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><path d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" stroke-linejoin="round" stroke-linecap="round"/></svg>
+                Ajouter
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card">
+          <button class="fav-btn" title="Ajouter aux favoris">♡</button>
+          <div class="image_container">
+            <svg class="img-placeholder" viewBox="0 0 24 24" fill="none" stroke="#6b3a05" stroke-width="1.5"><path d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5M9.75 3.75h4.5M12 3v.75"/></svg>
+          </div>
+          <div class="card-body">
+            <span class="card-brand">Carrefour</span>
+            <div class="card-title">Pommes Golden</div>
+            <div class="card-size">500 g — France</div>
+            <div class="card-action">
+              <span class="card-price">2,49 €</span>
+              <button class="cart-button">
+                <svg class="cart-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><path d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" stroke-linejoin="round" stroke-linecap="round"/></svg>
+                Ajouter
+              </button>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Card 2 -->
+        <div class="card">
+          <button class="fav-btn" title="Ajouter aux favoris">♡</button>
+          <div class="image_container">
+            <svg class="img-placeholder" viewBox="0 0 24 24" fill="none" stroke="#6b3a05" stroke-width="1.5"><path d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5M9.75 3.75h4.5M12 3v.75"/></svg>
+          </div>
+          <div class="card-body">
+            <span class="card-brand">Carrefour</span>
+            <div class="card-title">Pommes Golden</div>
+            <div class="card-size">500 g — France</div>
+            <div class="card-action">
+              <span class="card-price">2,49 €</span>
+              <button class="cart-button">
+                <svg class="cart-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><path d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" stroke-linejoin="round" stroke-linecap="round"/></svg>
+                Ajouter
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card">
+          <button class="fav-btn" title="Ajouter aux favoris">♡</button>
+          <div class="image_container">
+            <svg class="img-placeholder" viewBox="0 0 24 24" fill="none" stroke="#6b3a05" stroke-width="1.5"><path d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5M9.75 3.75h4.5M12 3v.75"/></svg>
+          </div>
+          <div class="card-body">
+            <span class="card-brand">Carrefour</span>
+            <div class="card-title">Pommes Golden</div>
+            <div class="card-size">500 g — France</div>
+            <div class="card-action">
+              <span class="card-price">2,49 €</span>
+              <button class="cart-button">
+                <svg class="cart-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><path d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" stroke-linejoin="round" stroke-linecap="round"/></svg>
+                Ajouter
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card">
+          <button class="fav-btn" title="Ajouter aux favoris">♡</button>
+          <div class="image_container">
+            <svg class="img-placeholder" viewBox="0 0 24 24" fill="none" stroke="#6b3a05" stroke-width="1.5"><path d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5M9.75 3.75h4.5M12 3v.75"/></svg>
+          </div>
+          <div class="card-body">
+            <span class="card-brand">Carrefour</span>
+            <div class="card-title">Pommes Golden</div>
+            <div class="card-size">500 g — France</div>
+            <div class="card-action">
+              <span class="card-price">2,49 €</span>
+              <button class="cart-button">
+                <svg class="cart-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><path d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" stroke-linejoin="round" stroke-linecap="round"/></svg>
+                Ajouter
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="card">
+          <span class="card-badge">-10%</span>
+          <button class="fav-btn" title="Ajouter aux favoris">♡</button>
+          <div class="image_container">
+            <svg class="img-placeholder" viewBox="0 0 24 24" fill="none" stroke="#6b3a05" stroke-width="1.5"><path d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5M9.75 3.75h4.5M12 3v.75"/></svg>
+          </div>
+          <div class="card-body">
+            <span class="card-brand">Leclerc</span>
+            <div class="card-title">Filet de poulet fermier</div>
+            <div class="card-size">800 g — Label Rouge</div>
+            <div class="card-action">
+              <span class="card-price">8,90 €</span>
+              <button class="cart-button">
+                <svg class="cart-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><path d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" stroke-linejoin="round" stroke-linecap="round"/></svg>
+                Ajouter
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cards 4–9 (identiques, sans badge) -->
+        {% for i in 4..9 %}
+        <div class="card">
+          <button class="fav-btn" title="Ajouter aux favoris">♡</button>
+          <div class="image_container">
+            <svg class="img-placeholder" viewBox="0 0 24 24" fill="none" stroke="#6b3a05" stroke-width="1.5"><path d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5M9.75 3.75h4.5M12 3v.75"/></svg>
+          </div>
+          <div class="card-body">
+            <span class="card-brand">Bio Village</span>
+            <div class="card-title">Produit naturel n°{{ i }}</div>
+            <div class="card-size">250 g — Origine France</div>
+            <div class="card-action">
+              <span class="card-price">3,99 €</span>
+              <button class="cart-button">
+                <svg class="cart-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><path d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" stroke-linejoin="round" stroke-linecap="round"/></svg>
+                Ajouter
+              </button>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+
+      </div>{# /cards-grid #}
+    </main>
+
+  </div>
+</section>
+
+<!-- ===== FOOTER (placeholder) ===== -->
+{% include 'bottom_header_regulation/bottom_page.html.twig' %}
+
+</body>
+</html>

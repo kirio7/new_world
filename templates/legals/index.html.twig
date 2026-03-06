@@ -1,0 +1,71 @@
+{% block body %}
+
+<link rel="stylesheet" href="{{ asset('css/LegalPage.css') }}">
+
+<section class="top-page">
+    {% include 'bottom_header_regulation/header_page.html.twig' %}
+
+    <div class="container">
+        <h1 class="big-title">Mentions légales – NewWorld</h1>
+        <p><strong>Dernière mise à jour :</strong> 09/11/2025</p>
+    </div>
+</section>
+
+<section class="legal-page">
+    <div class="container">
+
+        <h2>Éditeur du site</h2>
+        <p>
+            Le site <strong>NewWorld</strong> est édité par :
+        </p>
+        <p>
+            <strong>Maxime ALLART & Léo BURBAN</strong><br>
+            Étudiants en BTS Services Informatiques aux Organisations<br>
+            Projet pédagogique à but non commercial.
+        </p>
+
+        <p>
+            <strong>Siège du projet :</strong><br>
+            Place Verdun, 05000 Gap
+        </p>
+
+        <p>
+            Le site NewWorld a pour vocation de promouvoir la consommation
+            de produits locaux et français, en valorisant les producteurs
+            régionaux et les circuits courts.
+        </p>
+
+        <h2>Responsable de la publication</h2>
+        <p>
+            Maxime ALLART & Léo BURBAN<br>
+            Concepteurs et développeurs du site.
+        </p>
+
+        <h2>Hébergement</h2>
+        <p>
+            Le site est hébergé :
+        </p>
+        <ul>
+            <li>Localement</li>
+            <li>Sur GitHub</li>
+        </ul>
+
+        <p>
+            Société au capital de [montant si applicable],<br>
+            immatriculée au Registre du Commerce et des Sociétés sous le numéro
+            [à compléter le cas échéant].
+        </p>
+
+        <h2>Contact</h2>
+        <p>
+            Pour toute question ou demande d’information :
+        </p>
+        <p>
+            📧 rgpd-contact@newworld.fr
+        </p>
+
+    </div>
+</section>
+
+{% include 'bottom_header_regulation/bottom_page.html.twig' %}
+{% endblock %}

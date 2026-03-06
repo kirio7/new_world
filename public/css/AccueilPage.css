@@ -1,0 +1,29 @@
+/* ============================= */
+/*            HEADER             */
+/* ============================= */
+
+.big-title {
+    color: #050505;
+    font-family: 'Abril Fatface', cursive;
+    font-weight: 100;
+    padding: 20px 20px;
+    font-size: clamp(2rem, 8vw, 3rem);
+    max-width: 100%;
+}
+
+@media (max-width: 600px) {
+    .big-title {
+        padding: 10px 15px;
+    }
+}
+
+/* ============================= */
+/*       SECTION MIDDEL PAGE     */
+/* ============================= */
+
+.middle-page {
+    padding: 25px;
+    align-items: center;
+    font-size: 20px;
+    flex: 1;
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Page d'accueil
+			{% endblock %}
+		</title>
+
+		{# CSS principal #}
+		<link rel="stylesheet" href="{{ asset('css/AccueilPage.css') }}"> {% block stylesheets %}{% endblock %}
+
+		</head>
+		<body>
+
+			{% block body %}
+				<section class="top-page">
+					{% include 'bottom_header_regulation/header_page.html.twig' %}
+
+					<div class="landing-page">
+						<h1 class="big-title">
+							NewWord, l'avenir de votre assiette : des produits frais et savoureux directement issus de l'agriculture locale, pour une alimentation saine et responsable.
+						</h1>
+					</div>
+
+				</section>
+
+				<section class="middle-page">
+					{% block middle_page %}
+						<h1 classe="big-title">
+							POURQUOI NOUS CHOISIR ?
+						</h1>
+						<p classe="text-middle-page">
+							Chez NewWord, nous croyons en une alimentation saine et responsable. C'est pourquoi nous nous engageons à vous offrir des produits frais et savoureux, directement issus de l'agriculture locale. En choisissant NewWord, vous soutenez les agriculteurs locaux et contribuez à la préservation de l'environnement. Rejoignez-nous dans notre mission pour un avenir plus vert et plus durable.
+						</p>
+					{% endblock %}
+				</section>
+                
+                {% include '/bottom_header_regulation/bottom_page.html.twig' %}
+			{% endblock %}
+		</body>
+	</html>

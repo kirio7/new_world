@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/Login.css') }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Cinzel:wght@400;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+
+<div class="page-header">
+  <h1>Bon retour</h1>
+  <div class="ornament">
+    <span class="ornament-line"></span>
+    <span class="ornament-diamond"></span>
+    <span class="ornament-line right"></span>
+  </div>
+  <p>Espace professionnel NewWorld</p>
+</div>
+
+<div class="form-card">
+
+  {% if error %}
+    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+  {% endif %}
+
+  {% if app.user %}
+    <div class="mb-3">
+        Connecté en tant que {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Se déconnecter</a>
+    </div>
+  {% endif %}
+
+  <form method="post">
+
+    <div class="field-wrap">
+      <label for="siretOrEmail">Numéro SIRET ou Email</label>
+      <input type="text" id="siretOrEmail" name="_username" value="{{ last_username }}" required autofocus autocomplete="username">
+    </div>
+
+    <div class="field-wrap">
+      <label for="password">Mot de passe</label>
+      <input type="password" id="password" name="_password" required autocomplete="current-password">
+    </div>
+
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+    <div class="checkbox mb-3">
+      <label>
+        <input type="checkbox" name="_remember_me"> Se souvenir de moi
+      </label>
+    </div>
+
+    <button type="submit" class="btn-login">— Se connecter —</button>
+
+  </form>
+
+  <div class="divider">
+    <span class="divider-line"></span>
+    <span class="divider-text">Pas encore membre ?</span>
+    <span class="divider-line"></span>
+  </div>
+
+  <p class="register-link"><a href="{{ path('app_register') }}">Créer un compte professionnel</a></p>
+
+</div>
+
+{% endblock %}

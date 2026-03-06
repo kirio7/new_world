@@ -1,0 +1,106 @@
+{% block body %}
+
+<link rel="stylesheet" href="{{ asset('css/LegalPage.css') }}">
+
+<section class="top-page">
+    {% include 'bottom_header_regulation/header_page.html.twig' %}
+
+    <div class="container">
+        <h1 class="big-title">Registre interne des traitements de données personnelles – NewWorld</h1>
+        <p><strong>Dernière mise à jour :</strong> 09/11/2025</p>
+    </div>
+</section>
+
+<section class="legal-page">
+    <div class="container">
+
+        <p><strong>Responsable du traitement :</strong> NewWorld</p>
+        <p><strong>Contact Protection des données :</strong> rgpd-contact@newworld.fr</p>
+
+        <hr>
+
+        <h2>1. Gestion des comptes utilisateurs</h2>
+
+        <p><strong>Finalité :</strong><br>
+        Création, gestion et authentification des comptes clients/utilisateurs.</p>
+
+        <p><strong>Catégories de données collectées :</strong><br>
+        Nom, prénom, email, mot de passe, numéro de téléphone,
+        adresse postale, date de naissance (si applicable).</p>
+
+        <p><strong>Base légale :</strong><br>
+        Exécution d’un contrat et/ou consentement de l’utilisateur.</p>
+
+        <p><strong>Personnes concernées :</strong><br>
+        Utilisateurs inscrits sur le site.</p>
+
+        <p><strong>Destinataires :</strong><br>
+        Personnel interne autorisé, prestataires techniques
+        pour l’hébergement et la sécurité des données.</p>
+
+        <p><strong>Durée de conservation :</strong><br>
+        Tant que le compte est actif et jusqu’à 3 ans après inactivité.</p>
+
+        <hr>
+
+        <h2>2. Newsletter et communications marketing</h2>
+
+        <p><strong>Finalité :</strong><br>
+        Envoi d’informations et offres promotionnelles.</p>
+
+        <p><strong>Données collectées :</strong><br>
+        Email, nom, préférences de communication.</p>
+
+        <p><strong>Base légale :</strong><br>
+        Consentement explicite de l’utilisateur.</p>
+
+        <p><strong>Personnes concernées :</strong><br>
+        Utilisateurs abonnés aux newsletters.</p>
+
+        <p><strong>Destinataires :</strong><br>
+        Prestataire de services d’emailing.</p>
+
+        <p><strong>Durée de conservation :</strong><br>
+        Jusqu’au retrait du consentement ou désabonnement.</p>
+
+        <hr>
+
+        <h2>3. Gestion des commandes</h2>
+
+        <p><strong>Finalité :</strong><br>
+        Traitement et suivi des commandes passées sur le site.</p>
+
+        <p><strong>Données collectées :</strong><br>
+        Informations de facturation et livraison,
+        coordonnées, détails de commande.</p>
+
+        <p><strong>Base légale :</strong><br>
+        Exécution d’un contrat.</p>
+
+        <p><strong>Personnes concernées :</strong><br>
+        Clients ayant passé commande.</p>
+
+        <p><strong>Destinataires :</strong><br>
+        Personnel interne autorisé, prestataires logistiques
+        et services de paiement.</p>
+
+        <p><strong>Durée de conservation :</strong><br>
+        Selon les obligations légales (ex : 10 ans pour facturation).</p>
+
+        <hr>
+
+        <h2>4. Mesures de sécurité</h2>
+
+        <ul>
+            <li>Accès restreint aux données personnelles</li>
+            <li>Données stockées sur serveurs sécurisés</li>
+            <li>Chiffrement lorsque nécessaire</li>
+            <li>Mises à jour régulières</li>
+            <li>Sauvegardes automatiques</li>
+        </ul>
+
+    </div>
+</section>
+
+{% include 'bottom_header_regulation/bottom_page.html.twig' %}
+{% endblock %}

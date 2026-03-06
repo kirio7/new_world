@@ -1,0 +1,597 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard Administrateur{% endblock %}
+
+{% block stylesheets %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Cinzel:wght@400;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --kraft:       #c8a96e;
+    --kraft-light: rgba(245,230,195,0.88);
+    --dark:        #1a0e00;
+    --dark-2:      #2e1a00;
+    --gold:        #d4b07a;
+    --ink:         rgba(70,35,5,0.75);
+    --ink-light:   rgba(70,35,5,0.45);
+    --border:      rgba(160,110,50,0.35);
+    --shadow:      rgba(80,40,0,0.18);
+    --sidebar-w:   230px;
+  }
+
+  html, body {
+    height: 100%;
+    font-family: 'Lato', sans-serif;
+    background-color: var(--kraft);
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E"),
+      linear-gradient(160deg, #d4b07a 0%, #b8904a 40%, #c9a060 70%, #d6b87a 100%);
+    color: var(--dark);
+  }
+
+  /* =============================================
+     LAYOUT
+  ============================================= */
+  .dashboard { display: flex; min-height: 100vh; }
+
+  /* =============================================
+     SIDEBAR
+  ============================================= */
+  .sidebar {
+    width: var(--sidebar-w);
+    flex-shrink: 0;
+    background: var(--dark);
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    z-index: 100;
+    overflow-y: auto;
+  }
+
+  .sidebar-logo {
+    padding: 1.8rem 1.5rem 1.4rem;
+    border-bottom: 1px solid rgba(212,176,122,0.15);
+  }
+
+  .sidebar-logo .brand {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 1.5rem;
+    color: var(--gold);
+    display: block;
+    line-height: 1;
+  }
+
+  .sidebar-logo .brand-sub {
+    font-family: 'Cinzel', serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(212,176,122,0.4);
+    margin-top: 0.3rem;
+    display: block;
+  }
+
+  .sidebar-section { padding: 1.2rem 1rem 0.4rem; }
+
+  .sidebar-section-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(212,176,122,0.32);
+    padding: 0 0.5rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.65rem 0.75rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.18s;
+    text-decoration: none;
+    margin-bottom: 0.15rem;
+  }
+
+  .nav-item:hover { background: rgba(212,176,122,0.08); }
+
+  .nav-item.active {
+    background: rgba(212,176,122,0.14);
+    border-left: 2px solid var(--gold);
+    padding-left: calc(0.75rem - 2px);
+  }
+
+  .nav-icon { width: 16px; height: 16px; stroke: rgba(212,176,122,0.5); flex-shrink: 0; }
+  .nav-item.active .nav-icon { stroke: var(--gold); }
+
+  .nav-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.67rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: rgba(212,176,122,0.5);
+  }
+
+  .nav-item.active .nav-label { color: var(--gold); }
+
+  .sidebar-footer {
+    margin-top: auto;
+    padding: 1.2rem 1rem;
+    border-top: 1px solid rgba(212,176,122,0.1);
+  }
+
+  .sidebar-user { display: flex; align-items: center; gap: 0.75rem; }
+
+  .user-avatar {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: rgba(212,176,122,0.12);
+    border: 1px solid rgba(212,176,122,0.22);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .user-name { font-family: 'Cinzel', serif; font-size: 0.65rem; color: rgba(212,176,122,0.75); display: block; }
+  .user-role { font-size: 0.58rem; color: rgba(212,176,122,0.32); display: block; }
+
+  /* =============================================
+     MAIN
+  ============================================= */
+  .main {
+    margin-left: var(--sidebar-w);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  .topbar {
+    background: rgba(245,230,195,0.5);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    padding: 0.9rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+
+  .topbar-title {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 1.5rem;
+    color: var(--dark);
+  }
+
+  .topbar-date {
+    font-family: 'Cinzel', serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    color: var(--ink-light);
+  }
+
+  .content { padding: 1.8rem 2rem; flex: 1; }
+
+  /* =============================================
+     PANEL
+  ============================================= */
+  .panel {
+    background: var(--kraft-light);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    box-shadow:
+      0 2px 0 rgba(255,255,255,0.45) inset,
+      3px 6px 20px var(--shadow),
+      0 0 0 3px rgba(200,160,100,0.2);
+    backdrop-filter: blur(2px);
+    margin-bottom: 1.8rem;
+    overflow: hidden;
+  }
+
+  .panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem 0.9rem;
+    border-bottom: 1px solid rgba(120,70,10,0.14);
+  }
+
+  .panel-title {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 1.25rem;
+    color: var(--dark);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .panel-title-icon { width: 18px; height: 18px; stroke: var(--ink-light); }
+
+  .panel-count {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+  }
+
+  /* =============================================
+     TABLE
+  ============================================= */
+  .table-wrap { overflow-x: auto; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.84rem;
+  }
+
+  thead th {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(120,70,10,0.15);
+    white-space: nowrap;
+    background: rgba(200,155,80,0.08);
+  }
+
+  tbody tr {
+    border-bottom: 1px solid rgba(120,70,10,0.07);
+    transition: background 0.15s;
+  }
+
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:hover { background: rgba(180,120,40,0.07); }
+
+  tbody td {
+    padding: 0.8rem 1rem;
+    color: var(--dark);
+    vertical-align: middle;
+  }
+
+  /* Cellules spéciales */
+  .td-siret {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.05em;
+    color: var(--ink-light);
+    white-space: nowrap;
+  }
+
+  .td-logo img {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    background: rgba(255,245,220,0.6);
+    padding: 2px;
+  }
+
+  .td-logo-placeholder {
+    width: 42px;
+    height: 42px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    background: rgba(200,155,80,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cinzel', serif;
+    font-size: 0.55rem;
+    color: var(--ink-light);
+  }
+
+  .td-name { font-weight: 600; }
+
+  .td-price {
+    font-family: 'IM Fell English', serif;
+    font-size: 1rem;
+    color: var(--dark);
+    white-space: nowrap;
+  }
+
+  .td-promo {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    color: #3a6b2a;
+    font-weight: 600;
+  }
+
+  /* Badges */
+  .badge {
+    display: inline-block;
+    padding: 0.18rem 0.55rem;
+    border-radius: 2px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.57rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .badge-bio     { background: rgba(58,107,42,0.12); color: #2d5a1f; border: 1px solid rgba(58,107,42,0.25); }
+  .badge-nonbio  { background: rgba(120,70,10,0.08); color: var(--ink-light); border: 1px solid var(--border); }
+  .badge-cat     { background: rgba(30,60,120,0.09); color: #1a3a6b; border: 1px solid rgba(30,60,120,0.2); margin: 1px; }
+  .badge-alg     { background: rgba(180,80,20,0.09); color: #7a3500; border: 1px solid rgba(180,80,20,0.25); margin: 1px; }
+  .badge-nutri   { background: rgba(26,14,0,0.08); color: var(--dark); border: 1px solid rgba(120,70,10,0.2); font-weight: 700; }
+
+  .nutri-a { background: rgba(0,150,60,0.12); color: #006030; border: 1px solid rgba(0,150,60,0.3); }
+  .nutri-b { background: rgba(80,160,0,0.12); color: #3a6000; border: 1px solid rgba(80,160,0,0.3); }
+  .nutri-c { background: rgba(200,160,0,0.12); color: #806000; border: 1px solid rgba(200,160,0,0.3); }
+  .nutri-d { background: rgba(220,100,0,0.12); color: #804000; border: 1px solid rgba(220,100,0,0.3); }
+  .nutri-e { background: rgba(180,0,0,0.1);   color: #700000; border: 1px solid rgba(180,0,0,0.25); }
+
+  /* Tags wrapper */
+  .tags { display: flex; flex-wrap: wrap; gap: 2px; }
+
+  /* Quantité avec barre */
+  .qty-wrap { display: flex; flex-direction: column; gap: 3px; }
+  .qty-bar-bg { height: 3px; background: rgba(120,70,10,0.12); border-radius: 2px; width: 60px; }
+  .qty-bar { height: 3px; background: var(--dark); border-radius: 2px; transition: width 0.3s; }
+  .qty-bar.low { background: #8b4513; }
+  .qty-bar.very-low { background: #8b1a1a; }
+  .qty-num { font-size: 0.82rem; font-weight: 600; }
+
+  /* Résiliation / archivage */
+  .td-date { font-family: 'Cinzel', serif; font-size: 0.62rem; color: var(--ink-light); white-space: nowrap; }
+  .td-date.danger { color: #8b1a1a; }
+  .td-date.empty { color: rgba(120,70,10,0.25); font-style: italic; }
+
+  /* Description tronquée */
+  .td-desc {
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.8rem;
+    color: var(--ink);
+  }
+
+  /* =============================================
+     EMPTY STATE
+  ============================================= */
+  .empty-state {
+    padding: 3rem;
+    text-align: center;
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--ink-light);
+  }
+
+  /* =============================================
+     RESPONSIVE
+  ============================================= */
+  @media (max-width: 900px) {
+    .sidebar { transform: translateX(-100%); }
+    .main { margin-left: 0; }
+    .content { padding: 1rem; }
+  }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="dashboard">
+
+  <!-- ====== SIDEBAR ====== -->
+  {% include 'bottom_header_regulation/sidebar_page.html.twig' with { active: 'dashboard' } %}
+
+  <!-- ====== MAIN ====== -->
+  <div class="main">
+
+    <div class="topbar">
+      <h1 class="topbar-title">Dashboard Administrateur</h1>
+      <span class="topbar-date">{{ "now"|date("d/m/Y") }}</span>
+    </div>
+
+    <div class="content">
+
+      <!-- ============================
+           SECTION PRODUCTEURS
+      ============================= -->
+      <div class="panel">
+        <div class="panel-header">
+          <span class="panel-title">
+            <svg class="panel-title-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Producteurs
+          </span>
+          <span class="panel-count">{{ producteurs|length }} enregistré{{ producteurs|length > 1 ? 's' : '' }}</span>
+        </div>
+
+        <div class="table-wrap">
+          {% if producteurs is empty %}
+            <div class="empty-state">Aucun producteur enregistré pour le moment.</div>
+          {% else %}
+          <table>
+            <thead>
+              <tr>
+                <th>SIRET</th>
+                <th>Logo</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Marque</th>
+                <th>Email</th>
+                <th>Adresse</th>
+                <th>Résiliation</th>
+                <th>Archivage</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for producteur in producteurs %}
+              <tr>
+                <td class="td-siret">{{ producteur.siret }}</td>
+                <td class="td-logo">
+                  {% if producteur.logo %}
+                    <img src="/uploads/logos/{{ producteur.logo }}" alt="Logo {{ producteur.marque }}">
+                  {% else %}
+                    <div class="td-logo-placeholder">N/A</div>
+                  {% endif %}
+                </td>
+                <td class="td-name">{{ producteur.nom }}</td>
+                <td>{{ producteur.prenom }}</td>
+                <td><strong>{{ producteur.marque }}</strong></td>
+                <td>{{ producteur.email }}</td>
+                <td>{{ producteur.adresse }}</td>
+                <td class="td-date {% if producteur.resiliation %}   danger{% else %}empty{% endif %}">
+                  {{ producteur.resiliation ? producteur.resiliation|date('d/m/Y') : '—' }}
+                </td>
+                <td class="td-date {% if producteur.archiver %} danger{% else %}empty{% endif %}">
+                  {{ producteur.archiver ? producteur.archiver|date('d/m/Y') : '—' }}
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- ============================
+           SECTION PRODUITS
+      ============================= -->
+      <div class="panel">
+        <div class="panel-header">
+          <span class="panel-title">
+            <svg class="panel-title-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Produits
+          </span>
+          <span class="panel-count">{{ produits|length }} référence{{ produits|length > 1 ? 's' : '' }}</span>
+        </div>
+
+        <div class="table-wrap">
+          {% if produits is empty %}
+            <div class="empty-state">Aucun produit enregistré pour le moment.</div>
+          {% else %}
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Producteur</th>
+                <th>Qté</th>
+                <th>Prix</th>
+                <th>Promo</th>
+                <th>Catégories</th>
+                <th>Allergènes</th>
+                <th>Nutri</th>
+                <th>Ingrédients</th>
+                <th>Bio</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for produit in produits %}
+              <div class="qty-bar" style="width: {{ produit.qtyPct }}%"></div>
+              <tr>
+                <td class="td-siret">#{{ produit.id }}</td>
+
+                <td class="td-name">{{ produit.nom }}</td>
+
+                <td>
+                  {{ produit.producteur.nom }}
+                  <span style="color:var(--ink-light);font-size:0.78rem">{{ produit.producteur.prenom }}</span>
+                </td>
+
+                <td>
+                  <div class="qty-wrap">
+                    <span class="qty-num">{{ produit.quantite }}</span>
+                    <div class="qty-bar-bg">
+                      <div class="qty-bar" 
+                            style="width: {{ produit.qtyPct }}%">
+                        </div>
+                    </div>
+                  </div>
+                </td>
+
+                <td class="td-price">{{ produit.prix }} €</td>
+
+                <td class="td-promo">
+                  {% if produit.promo is defined and produit.promo %}
+                    -{{ produit.promo }} €
+                  {% else %}
+                    <span style="color:var(--ink-light);font-size:0.75rem">—</span>
+                  {% endif %}
+                </td>
+
+                <td>
+                  <div class="tags">
+                    {% if produit.categories is iterable %}
+                      {% for cat in produit.categories %}
+                        <span class="badge badge-cat">{{ cat.nom }}</span>
+                      {% endfor %}
+                    {% elseif produit.categories is not null %}
+                      <span class="badge badge-cat">{{ produit.categories.nom }}</span>
+                    {% endif %}
+                  </div>
+                </td>
+
+                <td>
+                  <div class="tags">
+                    {% if produit.allergenes is iterable %}
+                      {% for alg in produit.allergenes %}
+                        <span class="badge badge-alg">{{ alg.nom }}</span>
+                      {% endfor %}
+                    {% elseif produit.allergenes is not null %}
+                      <span class="badge badge-alg">{{ produit.allergenes.nom }}</span>
+                    {% endif %}
+                  </div>
+                </td>
+
+                <td>
+                  {% if produit.nutriscores is defined and produit.nutriscores %}
+                    {% set score = produit.nutriscores.nom|upper %}
+                    <span class="badge badge-nutri nutri-{{ score|lower }}">{{ score }}</span>
+                  {% elseif produit.nutriscore is defined and produit.nutriscore %}
+                    {% set score = produit.nutriscore|upper %}
+                    <span class="badge badge-nutri nutri-{{ score|lower }}">{{ score }}</span>
+                  {% else %}
+                    <span style="color:var(--ink-light);font-size:0.75rem">—</span>
+                  {% endif %}
+                </td>
+
+                <td>
+                  <div class="td-desc" title="{{ produit.ingredients }}">
+                    {{ produit.ingredients }}
+                  </div>
+                </td>
+
+                <td>
+                  {% if produit.estBio %}
+                    <span class="badge badge-bio">✓ Bio</span>
+                  {% else %}
+                    <span class="badge badge-nonbio">Non</span>
+                  {% endif %}
+                </td>
+
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          {% endif %}
+        </div>
+      </div>
+
+    </div>{# /content #}
+  </div>{# /main #}
+</div>{# /dashboard #}
+{% endblock %}

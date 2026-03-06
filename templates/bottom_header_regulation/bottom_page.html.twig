@@ -1,0 +1,27 @@
+<link rel="stylesheet" href="{{ asset('css/TopBottomPage.css') }}">
+
+<section class="bottom-page">
+	{% block bottom_page %}
+		<div class="majorite">
+			<img src="{{ asset('image/republique_francaise(1999)-icon.png') }}" alt="nos engagements" class="engagement">
+			<p class="text-bottom-page">
+				Interdiction de vente de boissons alcooliques aux mineurs de moins de 18 ans
+				La preuve de majorité de l'acheteur est exigée au moment de la vente en ligne.
+				CODE DE LA SANTÉ PUBLIQUE, ART.L.3342-1 ET L.3353-3
+			</p>
+		</div>
+
+		<footer class="footer-legal">
+			<div class="footer-container">
+				<a href="{{ path('app_cgv') }}" class="footer-link">CGV</a>
+				<a href="{{ path('app_cgu') }}" class="footer-link">CGU</a>
+				<a href="{{ path('app_privacy_policy') }}" class="footer-link">Politique de confidentialité</a>
+				<a href="{{ path('app_cookies_policy') }}" class="footer-link">Politique de cookies</a>
+				<a href="{{ path('app_cnil') }}" class="footer-link">CNIL</a>
+				<a href="{{ path('app_registre_traitements') }}" class="footer-link">Registre des traitements</a>
+				<a href="{{ path('app_legals') }}" class="footer-link">Mentions légales</a>
+			</div>
+		</footer>
+
+	{% endblock %}
+</section>

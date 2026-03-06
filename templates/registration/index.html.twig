@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/Register.css') }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Cinzel:wght@400;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+
+<div class="page-header">
+  <h1>Rejoignez NewWorld</h1>
+  <div class="ornament">
+    <span class="ornament-line"></span>
+    <span class="ornament-diamond"></span>
+    <span class="ornament-line right"></span>
+  </div>
+  <p>Inscription professionnelle</p>
+</div>
+
+<div class="form-card">
+
+  {# Menu déroulant pour choisir le rôle #}
+  <form method="get" id="role-select-form">
+    <label for="userType">Vous êtes :</label>
+    <select id="userType" name="type" onchange="document.getElementById('role-select-form').submit()">
+      <option value="user" {% if userType == 'user' %}selected{% endif %}>Utilisateur</option>
+      <option value="admin" {% if userType == 'admin' %}selected{% endif %}>Admin</option>
+      <option value="producteur" {% if userType == 'producteur' %}selected{% endif %}>Producteur</option>
+    </select>
+  </form>
+
+  <hr>
+
+  {{ form_start(registrationForm, {
+    'attr': { 'enctype': 'multipart/form-data', 'novalidate': 'novalidate' }
+  }) }}
+
+  {# Affichage conditionnel des champs selon le rôle #}
+  {% if userType == 'producteur' %}
+    <span class="section-label">Votre entreprise</span>
+    <div class="field-wrap">{{ form_row(registrationForm.siret) }}</div>
+    <div class="field-wrap">{{ form_row(registrationForm.marque) }}</div>
+    <div class="field-wrap">{{ form_row(registrationForm.adresse) }}</div>
+    <div class="field-wrap">{{ form_row(registrationForm.logo) }}</div>
+  {% endif %}
+
+  <span class="section-label">Vos coordonnées</span>
+  <div class="form-grid-2">
+    <div class="field-wrap">{{ form_row(registrationForm.prenom) }}</div>
+    <div class="field-wrap">{{ form_row(registrationForm.nom) }}</div>
+  </div>
+
+  <div class="field-wrap">{{ form_row(registrationForm.email) }}</div>
+  <div class="field-wrap">{{ form_row(registrationForm.plainPassword) }}</div>
+
+  <span class="section-label">Conditions</span>
+  <div class="checkbox-wrap">
+    {{ form_row(registrationForm.agreeTerms) }}
+  </div>
+
+  <button type="submit" class="btn-register">— S'inscrire —</button>
+
+  {{ form_end(registrationForm) }}
+
+  <p class="login-link">Déjà membre ? <a href="{{ path('app_login') }}">Se connecter</a></p>
+
+</div>
+
+{% endblock %}
