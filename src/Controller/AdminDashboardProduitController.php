@@ -50,7 +50,7 @@ final class AdminDashboardProduitController extends AbstractController
         }
 
         foreach ($produits as $produit) {
-            $produit->qtyPct = max(0, min(round($produit->getQuantite()), 100));
+            $produit->setPourcentage(max(0, min(round($produit->getPourcentage()*100), 100)));
         }
         return $this->render('admin_dashboard_produit/index.html.twig', [
             'controller_name' => 'AdminDashboardProduitController',

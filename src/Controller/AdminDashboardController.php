@@ -22,7 +22,7 @@ class AdminDashboardController extends AbstractController
         $producteurs = BDD::producteur();
 
         foreach ($produits as $produit) {
-            $produit->qtyPct = max(0, min(round($produit->getQuantite()), 100));
+            $produit->setPourcentage(max(0, min(round($produit->getPourcentage()*100), 100)));
         }
 
         return $this->render('admin_dashboard/index.html.twig', [
