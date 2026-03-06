@@ -501,7 +501,7 @@
             </thead>
             <tbody>
                 {% for produit in produits %}
-              <div class="qty-bar" style="width: {{ produit.qtyPct }}%"></div>
+              <div class="qty-bar" style="width: {{ produit|length }}%"></div>
               <tr>
                 <td class="td-siret">#{{ produit.id }}</td>
 
@@ -515,19 +515,14 @@
                 <td>
                   <div class="qty-wrap">
                     <span class="qty-num">{{ produit.quantite }}</span>
-                    <div class="qty-bar-bg">
-                      <div class="qty-bar" 
-                            style="width: {{ produit.qtyPct }}%">
-                        </div>
-                    </div>
                   </div>
                 </td>
 
                 <td class="td-price">{{ produit.prix }} €</td>
 
                 <td class="td-promo">
-                  {% if produit.promo is defined and produit.promo %}
-                    -{{ produit.promo }} €
+                  {% if produit.pourcentage is defined and produit.pourcentage %}
+                    -{{ 100- produit.pourcentage }} %
                   {% else %}
                     <span style="color:var(--ink-light);font-size:0.75rem">—</span>
                   {% endif %}
@@ -547,12 +542,12 @@
 
                 <td>
                   <div class="tags">
-                    {% if produit.allergenes is iterable %}
-                      {% for alg in produit.allergenes %}
+                    {% if produit.alergenes is iterable %}
+                      {% for alg in produit.alergenes %}
                         <span class="badge badge-alg">{{ alg.nom }}</span>
                       {% endfor %}
-                    {% elseif produit.allergenes is not null %}
-                      <span class="badge badge-alg">{{ produit.allergenes.nom }}</span>
+                    {% elseif produit.alergenes is not null %}
+                      <span class="badge badge-alg">{{ produit.alergenes.nom }}</span>
                     {% endif %}
                   </div>
                 </td>
@@ -562,7 +557,7 @@
                     {% set score = produit.nutriscores.nom|upper %}
                     <span class="badge badge-nutri nutri-{{ score|lower }}">{{ score }}</span>
                   {% elseif produit.nutriscore is defined and produit.nutriscore %}
-                    {% set score = produit.nutriscore|upper %}
+                    {% set score = produit.nutriscore.score|upper %}
                     <span class="badge badge-nutri nutri-{{ score|lower }}">{{ score }}</span>
                   {% else %}
                     <span style="color:var(--ink-light);font-size:0.75rem">—</span>
