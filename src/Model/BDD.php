@@ -6,6 +6,7 @@ use App\Entity\Categorie;
 use App\Entity\Nutriscore;
 use App\Entity\Producteur;
 use App\Entity\Produit;
+use phpDocumentor\Reflection\Types\Boolean;
 use SQLite3;
 use InvalidArgumentException;
 
@@ -365,13 +366,14 @@ static public function getCategorieByProduit($produitId,Produit $produit)
         ?string $prenom = null,
         ?string $marque = null,
         ?string $logo = null,
-        ?string $adresse = null
+        ?string $adresse = null,
+        ?bool $is_verified = null 
     ): int {
         $bdd = new SQLite3(BDD::$cheminDeLaBDD);
 
         // Récupère les valeurs actuelles
         $requete = $bdd->prepare("
-            SELECT email, nom, prenom, marque, logo, adresse 
+            SELECT email, nom, prenom, marque, logo, adresse, is_verified
             FROM producteur 
             WHERE siret = ?
         ");
@@ -389,11 +391,12 @@ static public function getCategorieByProduit($produitId,Produit $produit)
         $marque = $marque ?? $result['marque'];
         $logo = $logo ?? $result['logo'];
         $adresse = $adresse ?? $result['adresse'];
+        $is_verified = $is_verified ?? $result['is_verified'];
 
         // Mise à jour
         $update = $bdd->prepare("
             UPDATE producteur 
-            SET email = ?, nom = ?, prenom = ?, marque = ?, logo = ?, adresse = ? 
+            SET email = ?, nom = ?, prenom = ?, marque = ?, logo = ?, adresse = ?, is_verified = ? 
             WHERE siret = ?
         ");
         $update->bindValue(1, $email, SQLITE3_TEXT);
@@ -402,7 +405,8 @@ static public function getCategorieByProduit($produitId,Produit $produit)
         $update->bindValue(4, $marque, SQLITE3_TEXT);
         $update->bindValue(5, $logo, SQLITE3_TEXT);
         $update->bindValue(6, $adresse, SQLITE3_TEXT);
-        $update->bindValue(7, $siret, SQLITE3_TEXT);
+        $update->bindValue(7, (int) $is_verified, SQLITE3_INTEGER);
+        $update->bindValue(8, $siret, SQLITE3_TEXT);
 
         $res = $update->execute();
         return $res ? 1 : -1;
