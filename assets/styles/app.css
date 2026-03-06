@@ -1,0 +1,11 @@
+  body {
+    font-family: 'Lato', sans-serif;
+    background-color: #c8a96e;
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E"),
+      repeating-linear-gradient(102deg, rgba(180,130,60,0.07) 0px, transparent 2px, transparent 28px),
+      linear-gradient(160deg, #d4b07a 0%, #b8904a 40%, #c9a060 70%, #d6b87a 100%);
+    min-height: 100vh;
+    padding: 3rem 1rem;
+    position: relative;
+  }
