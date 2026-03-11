@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProducteurDashboardController extends AbstractController
 {
     #[Route('/producteur/dashboard', name: 'producteur_dashboard')]
-    public function index(Produit $produits): Response
+    public function index(): Response
     {
         $user = $this->getUser();
 
@@ -20,20 +20,17 @@ class ProducteurDashboardController extends AbstractController
         }
 
         // on récupère seulement les produits de ce producteur
-        $produits = BDD::produit();
+        $produits = BDD::produitsByProducteur($user->getSiret());
 
         foreach ($produits as $produit) {
-            $pct = round($produit->getQuantite());
-            $pct = max(0, min($pct, 100));
-            $produit->qtyPct = $pct; // propriété dynamique
+            $pct = $produit->getPourcentage();
+            $pct = max(0, min($pct*100, 100));
+            $produit->setPourcentage($pct);
         }
 
-        // on récupère seulement les produits de ce producteur
-        $produits = $produits->findBy(['producteur' => $user->getSiret()]);
-
-
-        return $this->render('producteur/index.html.twig', [
+        return $this->render('producteur_dashboard/index.html.twig', [
             'produits' => $produits,
+            'producteur' => $user,
         ]);
     }
 }

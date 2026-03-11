@@ -589,12 +589,12 @@
 			<div id="modal-produit" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:201;width:100%;max-width:520px;padding:1rem;">
 				<div
 					style="
-												    background:rgba(245,230,195,0.97);
-												    border:1px solid rgba(160,110,50,0.4);
-												    border-radius:6px;
-												    box-shadow:0 2px 0 rgba(255,255,255,0.5) inset, 4px 12px 40px rgba(80,40,0,0.35), 0 0 0 4px rgba(200,160,100,0.25);
-												    overflow:hidden;
-												  ">
+																		    background:rgba(245,230,195,0.97);
+																		    border:1px solid rgba(160,110,50,0.4);
+																		    border-radius:6px;
+																		    box-shadow:0 2px 0 rgba(255,255,255,0.5) inset, 4px 12px 40px rgba(80,40,0,0.35), 0 0 0 4px rgba(200,160,100,0.25);
+																		    overflow:hidden;
+																		  ">
 
 					{# En-tête modal #}
 					<div style="display:flex;align-items:center;justify-content:space-between;padding:1rem 1.5rem;border-bottom:1px solid rgba(120,70,10,0.15);">
@@ -651,13 +651,13 @@
 
 							{# Bouton submit #}
 							<button type="submit" style="
-																          width:100%;padding:0.85rem;
-																          background:#1a0e00;color:#d4b07a;
-																          border:none;border-radius:3px;
-																          font-family:'Cinzel',serif;font-size:0.75rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;
-																          cursor:pointer;transition:background 0.2s, transform 0.15s;
-																          box-shadow:0 4px 14px rgba(20,10,0,0.3);
-																        " onmouseover="this.style.background='#2e1a00';this.style.transform='translateY(-1px)'" onmouseout="this.style.background='#1a0e00';this.style.transform='translateY(0)'">
+																								          width:100%;padding:0.85rem;
+																								          background:#1a0e00;color:#d4b07a;
+																								          border:none;border-radius:3px;
+																								          font-family:'Cinzel',serif;font-size:0.75rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;
+																								          cursor:pointer;transition:background 0.2s, transform 0.15s;
+																								          box-shadow:0 4px 14px rgba(20,10,0,0.3);
+																								        " onmouseover="this.style.background='#2e1a00';this.style.transform='translateY(-1px)'" onmouseout="this.style.background='#1a0e00';this.style.transform='translateY(0)'">
 								— Ajouter le produit —
 							</button>
 
@@ -777,9 +777,12 @@
 										</td>
 
 										<td>
-											{% set score = produit.nutriscores.score ?? null %}
-											{% if score %}
-												<span class="badge nutri-{{ score|upper|lower }}">{{ score|upper }}</span>
+											{% if produit.nutriscores is defined and produit.nutriscores %}
+												{% set score = produit.nutriscores.nom|upper %}
+												<span class="badge badge-nutri nutri-{{ score|lower }}">{{ score }}</span>
+											{% elseif produit.nutriscore is defined and produit.nutriscore %}
+												{% set score = produit.nutriscore.score|upper %}
+												<span class="badge badge-nutri nutri-{{ score|lower }}">{{ score }}</span>
 											{% else %}
 												<span style="color:var(--ink-light);font-size:0.75rem">—</span>
 											{% endif %}
@@ -807,8 +810,9 @@
 	</div>
 
 
-</div><script>
-const searchInput = document.getElementById('searchInput');
+</div>
+<script>
+	const searchInput = document.getElementById('searchInput');
 const filterBio = document.getElementById('filterBio');
 const filterStock = document.getElementById('filterStock');
 const rows = document.querySelectorAll('#produitsTable tbody tr');
@@ -826,16 +830,20 @@ if (search && ! name.includes(search))
 show = false;
 
 
+
 if (bio && rowBio !== bio) 
 show = false;
+
 
 
 if (stock === 'low' && rowStock >= 20) 
 show = false;
 
 
+
 if (stock === 'out' && rowStock >= 5) 
 show = false;
+
 
 
 row.style.display = show ? '' : 'none';
@@ -860,4 +868,6 @@ if (e.key === 'Escape')
 toggleModal();
 
 
-});</script>{% endblock %}
+
+});
+</script>{% endblock %}

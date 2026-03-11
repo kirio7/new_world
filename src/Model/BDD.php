@@ -210,6 +210,44 @@ static public function getCategorieByProduit($produitId,Produit $produit)
         }
         return $admins;
     }
+
+    static public function produitsByProducteur(string $siret)
+    {
+        $bdd = new SQLite3(BDD::$cheminDeLaBDD);
+        $requete = "select id,produit.nom,description,prix,image,producteur_id,pourcentage,quantite,nutriscore_id,ingredients,est_bio from produit where producteur_id = (select id from producteur where siret = ?)";
+        $stmt = $bdd->prepare($requete);
+        $stmt->bindValue(1, $siret, SQLITE3_TEXT);
+        $result = $stmt->execute();
+        $produits = array();
+        if ($result) {
+            while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+                $produit = new Produit();
+                $produit->setNom($row['nom']);
+                $produit->setDescription($row['description']);
+                $produit->setPrix($row['prix']);
+                $produit->setImage($row['image']);
+                $produit->setPourcentage($row['pourcentage']);
+                $produit->setQuantite($row['quantite']);
+                if ($row['nutriscore_id']) {
+                    $requete = "select score from nutriscore where id = " . $row['nutriscore_id'];
+                    $result2 = $bdd->query($requete);
+                    if ($result2) {
+                        $row2 = $result2->fetchArray(SQLITE3_ASSOC);
+                        $nutriscore = new Nutriscore();
+                        $nutriscore->setScore($row2['score']);
+                        $produit->setNutriscore($nutriscore);
+                    }
+                }
+                $produit->setIngredients($row['ingredients']);
+                $produit->setEstBio($row['est_bio']);
+                $produit = self::getAlergenesByProduit($row['id'],$produit);
+                $produit = self::getCategorieByProduit($row['id'],$produit);
+                $produits[] = $produit;
+            }
+        }
+        return $produits;
+    }
+
     static public function ajouterCategorie(string $nom)
     {
         $bdd = new SQLite3(BDD::$cheminDeLaBDD);
