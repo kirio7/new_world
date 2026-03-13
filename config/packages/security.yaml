@@ -52,6 +52,7 @@ security:
     access_control:
         - { path: ^/producteur, roles: ROLE_PRODUCTEUR }
         - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/Si, roles: ROLE_Si }
 
 
 when@test:
