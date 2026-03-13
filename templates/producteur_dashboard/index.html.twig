@@ -974,7 +974,6 @@
 											<th>Allergènes</th>
 											<th>Nutri</th>
 											<th>Bio</th>
-											<th>Statut</th>
 											<th>Actions</th>
 										</tr>
 									</thead>
@@ -996,7 +995,6 @@
 												<td>
 													<div class="qty-wrap">
 														<span style="font-weight:600">{{ produit.quantite }}</span>
-														<div class="qty-bar-bg"></div>
 													</td>
 												</td>
 												<td class="td-price">{{ produit.prix }}
@@ -1052,14 +1050,6 @@
 														<span class="badge badge-bio">✓ Bio</span>
 													{% else %}
 														<span class="badge badge-nonbio">Non</span>
-													{% endif %}
-												</td>
-
-												<td>
-													{% if produit.isVerified is defined and produit.isVerified %}
-														<span class="badge badge-ok">✓ Publié</span>
-													{% else %}
-														<span class="badge badge-pending">En attente</span>
 													{% endif %}
 												</td>
 
