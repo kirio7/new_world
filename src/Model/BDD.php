@@ -203,7 +203,7 @@ static public function getCategorieByProduit($produitId,Produit $produit)
                 $admin = new Admin();
                 $admin->setEmail($row['email']);
                 $admin->setPassword($row['password']);
-                $admin->setRoles($row['roles']);
+                $admin->setRoles(explode(',', $row['roles']));
                 $admin->setNom($row['nom']);
                 $admin->setPrenom($row['prenom']);
                 $admins[] = $admin;
@@ -550,7 +550,7 @@ static public function getCategorieByProduit($produitId,Produit $produit)
         ?string $nom = null,
         ?string $prenom = null,
         ?string $password = null,
-        ?string $roles = null
+        ?array $roles = []
     ): int {
         $bdd = new SQLite3(BDD::$cheminDeLaBDD);
 

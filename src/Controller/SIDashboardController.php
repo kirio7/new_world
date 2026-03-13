@@ -18,18 +18,11 @@ class SIDashboardController extends AbstractController
 {
     #[Route('/SI', name: 'si_dashboard')]
     public function index(
-        ProduitsRepository $produitsRepo,
-        ProducteursRepository $producteursRepo,
-        AdminRepository $adminRepository
     ): Response {
-        $produits = $produitsRepo->findAll();
-        $producteurs = $producteursRepo->findAll();
-        $admins = $adminRepository->findAll();
-
+        $admin = BDD::Admin();
         return $this->render('si_dashboard/index.html.twig', [
-            'produits' => $produits,
-            'producteurs' => $producteurs,
-            'admins' => $admins,
+            'utilisateurs' => $admin
         ]);
+
     }
 }
