@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Votre compte a été refusé</title>
+  <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Cinzel:wght@400;600&family=Lato:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background-color: #b8904a;
+      background-image: linear-gradient(160deg, #d4b07a 0%, #b8904a 40%, #c9a060 70%, #d6b87a 100%);
+      padding: 40px 16px;
+      min-height: 100vh;
+    }
+
+    .wrapper {
+      max-width: 580px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .email-header {
+      text-align: center;
+      padding-bottom: 28px;
+    }
+
+    .brand {
+      font-family: 'IM Fell English', serif;
+      font-style: italic;
+      font-size: 2rem;
+      color: #1a0e00;
+      display: block;
+      line-height: 1;
+    }
+
+    .brand-sub {
+      font-family: 'Cinzel', serif;
+      font-size: 0.52rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(26,14,0,0.45);
+      margin-top: 6px;
+      display: block;
+    }
+
+    /* Card */
+    .card {
+      background: rgba(245,230,195,0.92);
+      border: 1px solid rgba(160,110,50,0.35);
+      border-radius: 6px;
+      box-shadow:
+        0 2px 0 rgba(255,255,255,0.45) inset,
+        3px 6px 24px rgba(80,40,0,0.22),
+        0 0 0 3px rgba(200,160,100,0.2);
+      overflow: hidden;
+    }
+
+    /* Card top accent — rouge brique pour refus */
+    .card-accent {
+      height: 4px;
+      background: linear-gradient(90deg, #7a2020 0%, #8b3030 50%, #7a2020 100%);
+    }
+
+    .card-body {
+      padding: 40px 44px 36px;
+    }
+
+    /* Seal / icon */
+    .seal {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: rgba(139,26,26,0.08);
+      border: 2px solid rgba(139,26,26,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 28px;
+    }
+
+    .seal svg {
+      width: 28px;
+      height: 28px;
+      stroke: #7a2020;
+    }
+
+    /* Divider ornamental */
+    .ornament {
+      text-align: center;
+      color: rgba(160,110,50,0.35);
+      font-size: 1.1rem;
+      letter-spacing: 0.4em;
+      margin: 24px 0;
+    }
+
+    /* Heading */
+    .email-title {
+      font-family: 'IM Fell English', serif;
+      font-style: italic;
+      font-size: 1.55rem;
+      color: #1a0e00;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .email-subtitle {
+      font-family: 'Cinzel', serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(70,35,5,0.45);
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    /* Body text */
+    .email-text {
+      font-size: 0.9rem;
+      line-height: 1.75;
+      color: rgba(26,14,0,0.78);
+      margin-bottom: 14px;
+    }
+
+    /* Info box — teinte neutre/warm pour orienter sans alarmer */
+    .info-box {
+      background: rgba(120,70,10,0.06);
+      border: 1px solid rgba(120,70,10,0.2);
+      border-left: 3px solid rgba(120,70,10,0.45);
+      border-radius: 3px;
+      padding: 14px 18px;
+      margin: 24px 0;
+    }
+
+    .info-box p {
+      font-size: 0.82rem;
+      color: rgba(70,35,5,0.75);
+      line-height: 1.6;
+    }
+
+    .info-box strong {
+      font-family: 'Cinzel', serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 4px;
+      color: rgba(70,35,5,0.85);
+    }
+
+    /* CTA Button */
+    .btn-wrap {
+      text-align: center;
+      margin: 32px 0 8px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 13px 40px;
+      background: #1a0e00;
+      color: #d4b07a;
+      text-decoration: none;
+      font-family: 'Cinzel', serif;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      border-radius: 3px;
+      border: 1px solid rgba(212,176,122,0.2);
+      box-shadow: 0 3px 10px rgba(80,40,0,0.25);
+    }
+
+    /* Footer rule */
+    .card-rule {
+      border: none;
+      border-top: 1px solid rgba(120,70,10,0.14);
+      margin: 28px 0 24px;
+    }
+
+    .email-footer-text {
+      font-size: 0.75rem;
+      color: rgba(70,35,5,0.4);
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    /* Email footer */
+    .email-footer {
+      text-align: center;
+      padding-top: 24px;
+    }
+
+    .email-footer p {
+      font-family: 'Cinzel', serif;
+      font-size: 0.52rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(26,14,0,0.35);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrapper">
+
+    <div class="email-header">
+      <span class="brand">Le Marché</span>
+      <span class="brand-sub">Plateforme Producteurs &amp; Artisans</span>
+    </div>
+
+    <div class="card">
+      <div class="card-accent"></div>
+
+      <div class="card-body">
+
+        <div class="seal">
+          <!-- X icon -->
+          <svg fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </div>
+
+        <h1 class="email-title">Demande non retenue</h1>
+        <p class="email-subtitle">Vérification &bull; Non approuvée</p>
+
+        <div class="ornament">· · ·</div>
+
+        <p class="email-text">
+          Nous avons bien examiné votre demande d'inscription en tant que producteur sur notre plateforme. Après étude de votre dossier, nous ne sommes malheureusement pas en mesure de <strong>valider votre compte</strong> à ce stade.
+        </p>
+
+        <p class="email-text">
+          Cette décision ne remet pas en question la qualité de vos produits ou de votre activité. Elle peut être liée à des critères de sélection propres à notre plateforme ou à un dossier incomplet.
+        </p>
+
+        <div class="info-box">
+          <p>
+            <strong>Que faire ?</strong>
+            Vous pouvez soumettre une nouvelle demande en complétant votre dossier ou en contactant notre équipe pour obtenir davantage d'informations sur les motifs de refus.
+          </p>
+        </div>
+
+        <div class="btn-wrap">
+          <a href="{{ lien }}" class="btn">Retour à l'accueil</a>
+        </div>
+
+        <hr class="card-rule" />
+
+        <p class="email-footer-text">
+          Si vous pensez qu'il s'agit d'une erreur ou si vous souhaitez contester cette décision, notre équipe reste disponible pour vous accompagner.<br/>
+          Ce message a été envoyé automatiquement, merci de ne pas y répondre directement.
+        </p>
+
+      </div>
+    </div>
+
+    <div class="email-footer" style="padding-top:24px;">
+      <p>© {{ "now"|date("Y") }} Le Marché &bull; Tous droits réservés</p>
+    </div>
+
+  </div>
+
+</body>
+</html>
