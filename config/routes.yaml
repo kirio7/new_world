@@ -21,3 +21,7 @@ producteur_produit_edit:
 producteur_produit_delete:
     path: /producteur/produit/{id}/delete
     controller: App\Controller\ProducteurProduitController::delete
+
+si_edit_user:
+    path: /SI/{id}/edit
+    controller: App\Controller\SIDashboardController::editerAdmin

@@ -195,12 +195,12 @@ static public function getCategorieByProduit($produitId,Produit $produit)
     static public function Admin()
     {
         $bdd = new SQLite3(BDD::$cheminDeLaBDD);
-        $requete = "select email,password,roles,nom,prenom from admin";
+        $requete = "select id,email,password,roles,nom,prenom from admin";
         $result = $bdd->query($requete);
         $admins = array();
         if ($result) {
             while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
-                $admin = new Admin();
+                $admin = new Admin($row['id']);
                 $admin->setEmail($row['email']);
                 $admin->setPassword($row['password']);
                 $admin->setRoles(explode(',', $row['roles']));
