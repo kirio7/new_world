@@ -55,8 +55,10 @@ class BDD
                 $producteur->setLogo($row['logo']);
                 $producteur->setAdresse($row['adresse']);
                 $producteur->setIsVerified($row['is_verified']);
-                $producteur->setResiliation($row['resiliation']);
-                $producteur->setArchiver($row['archiver']);
+                $dateResiliation = $row['resiliation'] ? new \DateTime($row['resiliation']) : null;
+                $producteur->setResiliation($dateResiliation);
+                $dateArchiver = $row['archiver'] ? new \DateTime($row['archiver']) : null;
+                $producteur->setArchiver($dateArchiver);
                 $producteurs[] = $producteur;
             }
         }
