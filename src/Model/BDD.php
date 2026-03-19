@@ -262,7 +262,7 @@ class BDD
     static public function ajouterProducteur()
     {
         $bdd = new SQLite3(BDD::$cheminDeLaBDD);
-        $requete = "select siret,email,nom,prenom,marque,logo,adresse,is_verified,resiliation,archiver from producteur where is_verified = false";
+        $requete = "select siret,email,nom,prenom,marque,logo,adresse,is_verified,resiliation,archiver from producteur where is_verified = false and (resiliation IS NULL or resiliation > date('now')) and (archiver IS NULL or archiver > date('now'))";
         $result = $bdd->query($requete);
         $producteurs = array();
         if ($result) {
