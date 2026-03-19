@@ -55,8 +55,10 @@ class BDD
                 $producteur->setLogo($row['logo']);
                 $producteur->setAdresse($row['adresse']);
                 $producteur->setIsVerified($row['is_verified']);
-                $producteur->setResiliation($row['resiliation']);
-                $producteur->setArchiver($row['archiver']);
+                $dateResiliation = $row['resiliation'] ? new \DateTime($row['resiliation']) : null;
+                $producteur->setResiliation($dateResiliation);
+                $dateArchiver = $row['archiver'] ? new \DateTime($row['archiver']) : null;
+                $producteur->setArchiver($dateArchiver);
                 $producteurs[] = $producteur;
             }
         }
@@ -103,49 +105,49 @@ class BDD
                 }
                 $produit->setIngredients($row['ingredients']);
                 $produit->setEstBio($row['est_bio']);
-                $produit = self::getAlergenesByProduit($row['id'],$produit);
-                $produit = self::getCategorieByProduit($row['id'],$produit);
+                $produit = self::getAlergenesByProduit($row['id'], $produit);
+                $produit = self::getCategorieByProduit($row['id'], $produit);
                 $produits[] = $produit;
             }
         }
         return $produits;
     }
-    static public function getAlergenesByProduit($produitId,Produit $produit)
-{
-    $bdd = new SQLite3(BDD::$cheminDeLaBDD);
-    $requete = "SELECT alergene.nom FROM alergene_produit 
+    static public function getAlergenesByProduit($produitId, Produit $produit)
+    {
+        $bdd = new SQLite3(BDD::$cheminDeLaBDD);
+        $requete = "SELECT alergene.nom FROM alergene_produit 
                 INNER JOIN alergene ON alergene_produit.alergene_id = alergene.id 
                 WHERE alergene_produit.produit_id = :id";
-    $stmt = $bdd->prepare($requete);
-    $stmt->bindValue(':id', $produitId);
-    $result = $stmt->execute();
-    
-    
-    while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
-        $alertegene = new Alergene();
-        $alertegene->setNom($row['nom']);
-        $produit->addAlergene($alertegene);
+        $stmt = $bdd->prepare($requete);
+        $stmt->bindValue(':id', $produitId);
+        $result = $stmt->execute();
+
+
+        while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+            $alertegene = new Alergene();
+            $alertegene->setNom($row['nom']);
+            $produit->addAlergene($alertegene);
+        }
+        return $produit;
     }
-    return $produit;
-}
-static public function getCategorieByProduit($produitId,Produit $produit)
-{
-    $bdd = new SQLite3(BDD::$cheminDeLaBDD);
-    $requete = "SELECT categorie.nom FROM categorie_produit 
+    static public function getCategorieByProduit($produitId, Produit $produit)
+    {
+        $bdd = new SQLite3(BDD::$cheminDeLaBDD);
+        $requete = "SELECT categorie.nom FROM categorie_produit 
                 INNER JOIN categorie ON categorie_produit.categorie_id = categorie.id 
                 WHERE categorie_produit.produit_id = :id";
-    $stmt = $bdd->prepare($requete);
-    $stmt->bindValue(':id', $produitId);
-    $result = $stmt->execute();
-    
-    
-    while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
-        $categorie = new Categorie();
-        $categorie->setNom($row['nom']);
-        $produit->addCategory($categorie);
+        $stmt = $bdd->prepare($requete);
+        $stmt->bindValue(':id', $produitId);
+        $result = $stmt->execute();
+
+
+        while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+            $categorie = new Categorie();
+            $categorie->setNom($row['nom']);
+            $produit->addCategory($categorie);
+        }
+        return $produit;
     }
-    return $produit;
-}
 
     static public function Nutriscore()
     {
@@ -274,8 +276,10 @@ static public function getCategorieByProduit($produitId,Produit $produit)
                 $producteur->setLogo($row['logo']);
                 $producteur->setAdresse($row['adresse']);
                 $producteur->setIsVerified($row['is_verified']);
-                $producteur->setResiliation($row['resiliation']);
-                $producteur->setArchiver($row['archiver']);
+                $dateResiliation = $row['resiliation'] ? new \DateTime($row['resiliation']) : null;
+                $producteur->setResiliation($dateResiliation);
+                $dateArchiver = $row['archiver'] ? new \DateTime($row['archiver']) : null;
+                $producteur->setArchiver($dateArchiver);
                 $producteurs[] = $producteur;
             }
         }
@@ -403,7 +407,7 @@ static public function getCategorieByProduit($produitId,Produit $produit)
         ?string $marque = null,
         ?string $logo = null,
         ?string $adresse = null,
-        ?bool $is_verified = null 
+        ?bool $is_verified = null
     ): int {
         $bdd = new SQLite3(BDD::$cheminDeLaBDD);
 
