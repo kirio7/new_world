@@ -52,6 +52,10 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
         // redirection selon le rôle
         $roles = $token->getRoleNames(); // récupère un tableau comme ['ROLE_USER'], ['ROLE_ADMIN'], ['ROLE_PRODUCTEUR']
 
+        if (in_array('ROLE_SI', $roles, true)) {
+            return new RedirectResponse($this->urlGenerator->generate('si_dashboard'));
+        }
+
         if (in_array('ROLE_ADMIN', $roles, true)) {
             return new RedirectResponse($this->urlGenerator->generate('admin_dashboard'));
         }
